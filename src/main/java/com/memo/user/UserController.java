@@ -1,5 +1,7 @@
 package com.memo.user;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,4 +32,23 @@ public class UserController {
 		model.addAttribute("view", "user/signIn");
 		return "template/layout";
 	}
+<<<<<<< HEAD
 }
+=======
+	/**
+	 * 로그아웃
+	 * @param session
+	 * @return
+	 */
+	@RequestMapping("/sign_out")
+	public String signOut(HttpSession session) {
+		// 세션에 있는 내용을 비운다.
+		session.removeAttribute("userId");
+		session.removeAttribute("userLoginId");
+		session.removeAttribute("userName");
+		
+		// 로그인 화면으로 이동 => redirect
+		return "redirect:/user/sign_in_view";
+	}
+}
+>>>>>>> 96461a2b3ee0acc2323c412fc23e483d3ae666c4
