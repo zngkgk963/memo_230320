@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/user")
 @Controller
 public class UserController {
-	
+
 	/**
 	 * 회원가입 화면
 	 * @param model

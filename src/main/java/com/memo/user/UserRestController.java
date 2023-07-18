@@ -42,6 +42,7 @@ public class UserRestController {
 		
 		return result;
 	}
+	
 	/**
 	 * 회원가입 API
 	 * @param loginId
@@ -58,8 +59,8 @@ public class UserRestController {
 			@RequestParam("email") String email) {
 		
 		// 비밀번호 해싱 - md5 알고리즘
-		// aaaa => 74b45453sf2342424sdfs2342424
-		// aaaa => 74b45453sf2342424sdfs2342424
+		// aaaa =>  74b8733745420d4d33f80c4663dc5e5
+		// aaaa =>  74b8733745420d4d33f80c4663dc5e5
 		String hashedPassword = EncryptUtils.md5(password);
 		
 		// db insert
@@ -70,7 +71,7 @@ public class UserRestController {
 			result.put("code", 1);
 			result.put("result", "성공");
 		} else {
-			result.put("code", 1);
+			result.put("code", 500);
 			result.put("errorMessage", "회원가입 하는데 실패했습니다.");
 		}
 		return result;
