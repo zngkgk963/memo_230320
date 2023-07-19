@@ -10,15 +10,13 @@ import com.memo.post.domain.Post;
 
 @Service
 public class PostBO {
-	
-	
+
 	@Autowired
-	private PostMapper postMapper; //mybatis
+	private PostMapper postMapper; // mybatis
 	
-	//input: userId(글쓴이)
-	//output: List<Post>
+	// input: userId(글쓴이)
+	// output: List<Post>
 	public List<Post> getPostListByUserId(int userId) {
 		return postMapper.selectPostListByUserId(userId);
 	}
-	
 }

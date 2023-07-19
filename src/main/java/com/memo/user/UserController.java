@@ -32,9 +32,7 @@ public class UserController {
 		model.addAttribute("view", "user/signIn");
 		return "template/layout";
 	}
-<<<<<<< HEAD
-}
-=======
+	
 	/**
 	 * 로그아웃
 	 * @param session
@@ -51,4 +49,3 @@ public class UserController {
 		return "redirect:/user/sign_in_view";
 	}
 }
->>>>>>> 96461a2b3ee0acc2323c412fc23e483d3ae666c4

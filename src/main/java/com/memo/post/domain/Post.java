@@ -4,7 +4,7 @@ import java.time.ZonedDateTime;
 
 import lombok.Data;
 
-@Data   // getter, setter
+@Data  // getter, setter
 public class Post {
 	private int id;
 	private int userId;
@@ -13,6 +13,4 @@ public class Post {
 	private String imagePath;
 	private ZonedDateTime createdAt;
 	private ZonedDateTime updatedAt;
-	
-	
 }

@@ -31,7 +31,6 @@ public class PostController {
 		
 		// DB 글 목록 조회
 		List<Post> postList = postBO.getPostListByUserId(userId);
-	
 		
 		model.addAttribute("postList", postList);
 		model.addAttribute("view", "post/postList");

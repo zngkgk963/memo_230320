@@ -92,7 +92,6 @@ public class UserRestController {
 		// loginId, hashedPassword로 UserEntity => null or 채워져있음
 		UserEntity userEntity = userBO.getUserEntityByLoginIdPassword(loginId, hashedPassword);
 		
-		// 로그인 처리
 		Map<String, Object> result = new HashMap<>();
 		if (userEntity != null) {
 			// 로그인 처리
