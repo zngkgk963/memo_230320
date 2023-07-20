@@ -21,13 +21,14 @@
 					<td>${post.id}</td>
 					<td><a href="/post/post_detail_view?postId=${post.id}">${post.subject}</a></td>
 					<td>
+						
 						<%-- ZonedDateTime -> Date -> String 변환 --%>
-						<fmt:parseDate value="${post.createdAt}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedCreatedAt" />
-						<fmt:formatDate value="${parsedCreatedAt}" pattern="yyyy년 M월 d일 HH:mm:ss" />
+						<%--<fmt:parseDate value="${post.createdAt}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedCreatedAt" />
+						<%-- <fmt:formatDate value="${parsedCreatedAt}" pattern="yyyy년 M월 d일 HH:mm:ss" /> --%>
 					</td>
 					<td>
-						<fmt:parseDate value="${post.updatedAt}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedUpdatedAt" />
-						<fmt:formatDate value="${parsedUpdatedAt}" pattern="yyyy년 M월 d일 HH:mm:ss" />
+						<%--<fmt:parseDate value="${post.updatedAt}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedUpdatedAt" />
+						<fmt:formatDate value="${parsedUpdatedAt}" pattern="yyyy년 M월 d일 HH:mm:ss" />--%>
 					</td>
 				</tr>
 			</c:forEach>
