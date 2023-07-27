@@ -17,7 +17,7 @@ public class PostBO {
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	//private Logger logger = LoggerFactory.getLogger(PostBO.class);
 	
-	
+
 	@Autowired
 	private PostMapper postMapper; // mybatis
 	
@@ -49,12 +49,14 @@ public class PostBO {
 	}
 	
 	public void updatePost(int userId, String userLoginId,
-			int postId, String subject, String content, MultipartFile file) {
+			int postId, String subject, String content, 
+			MultipartFile file) {
 		
-		// 업데이트 대상인 기존 글을 가져와본다. (validation, 이미지 교체시 기존 이미지 제거를 위해)
+		// 업데이트 대상인 기존 글을 가져와본다.(validation, 이미지 교체시 기존 이미지 제거를 위해)
 		Post post = postMapper.selectPostByPostIdAndUserId(postId, userId);
 		if (post == null) {
 			logger.warn("###[글 수정] post is null. postId:{}, userId:{}", postId, userId);
+			return;
 		}
 		
 		// 파일이 비어있지 않다면 업로드 후 imagePath 얻어옴
@@ -64,8 +66,8 @@ public class PostBO {
 			// 업로드
 			imagePath = fileManager.saveFile(userLoginId, file);
 			
-			// 이미지 제거
-			// -- 업로드가 성공 했고, 기존 이미지 존재하는 경우
+			// 기존 이미지 제거
+			//-- 업로드가 성공 했고, 기존 이미지 존재하는 경우
 			if (imagePath != null && post.getImagePath() != null) {
 				// 이미지 제거
 				fileManager.deleteFile(post.getImagePath());
@@ -74,5 +76,21 @@ public class PostBO {
 		
 		// 글 업데이트
 		postMapper.updatePostByPostIdAndUserId(postId, userId, subject, content, imagePath);
+	}
+	
+	public void deletePostByPostIdAndUserId(int postId, int userId) {
+		// 기존 글을 가져온다. (이미지가 있으면 삭제해야 하기 때문)
+		Post post = postMapper.selectPostByPostIdAndUserId(postId, userId);
+		if (post == null) {
+			logger.error("##[글 삭제] post is null. postId:{}, userId:{}", postId, userId);
+			return;
+		}
+		
+		// 기존에 이미지가 있으면 삭제
+		if (post.getImagePath() != null) {
+			fileManager.deleteFile(post.getImagePath());
+		}
+		
+		postMapper.deletePostByPostIdAndUserId(postId, userId);
 	}
 }

@@ -46,7 +46,7 @@
 			, NOW()
 		)
 	</insert>
-	 
+	
 	<select id="selectPostByPostIdAndUserId" parameterType="map" resultType="com.memo.post.domain.Post">
 		SELECT
 			`id`
@@ -68,7 +68,7 @@
 		SET
 			`subject` = #{subject}
 			, `content` = #{content}
-			<!--  imagePath가 있을 때만 수정한다.  -->
+			<!-- imagePath가 있을 때만 수정한다. -->
 			<if test="imagePath != null">
 			, `imagePath` = #{imagePath}
 			</if>
@@ -77,4 +77,13 @@
 			`id` = #{postId}
 			AND `userId` = #{userId}
 	</update>
+	
+	<delete id="deletePostByPostIdAndUserId" parameterType="map">
+		DELETE
+		FROM
+			`post`
+		WHERE
+			`id` = #{postId}
+			AND `userId` = #{userId}
+	</delete>
 </mapper>
