@@ -7,6 +7,7 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.memo.common.FileManagerService;
+import com.memo.interceptor.PermissionInterceptor;
 
 @Configuration // 설정을 위한 spring bean
 public class WebMvcConfig implements WebMvcConfigurer {
@@ -19,7 +20,8 @@ public class WebMvcConfig implements WebMvcConfigurer {
 		registry
 		.addInterceptor(interceptor)
 		.addPathPatterns("/**")
-		.excludePatterns("/static/**")
+		.excludePathPatterns("/static/**", "/error", "/favicon.ico", "/user/sign_out")
+		;
 	}
 	
 	// 웹 이미지 path와 서버에 업로드 된 이미지와 매핑 설정
